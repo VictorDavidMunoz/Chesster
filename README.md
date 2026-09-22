@@ -1,17 +1,17 @@
-# Alfrond
-Victor David Muñoz Ramirez - Santiago Cortes Osorio - Digitales III
+# Chesster
+Víctor David Muñoz Ramírez - Santiago Cortés Osorio - Digitales III
 
 <div align="center">
   <h2>Universidad de Antioquia</h2>
   <h3>Electrónica Digital 3</h3>
   <br>
-  <h1>ALFROND</h1>
-  <h2>Propuesta de Proyecto de Aula</h2>
+  <h1>CHESSTER</h1>
+  <h2>Brazo Robótico Ajedrecista Autónomo</h2>
   <br>
   <h3>Presentado por:</h3>
   <p>
     Víctor David Muñoz Ramírez<br>
-    Santiago Cortes Osorio
+    Santiago Cortés Osorio
   </p>
   <br>
   <p>
@@ -21,17 +21,19 @@ Victor David Muñoz Ramirez - Santiago Cortes Osorio - Digitales III
 
 <br>
 
-## Primer formato (25 de agosto) 
+## Reporte Técnico - Iteración 2
 
 ## 1. Nombre del Proyecto
-**Alfrond**
+**Chesster**
 
 ## 2. Descripción de la Idea Inicial
-Alfrond es un vehículo robótico móvil diseñado como un asistente de servicio a pequeña escala, similar a un carrito hotelero. El objetivo principal de Alfrond es desplazarse de manera autónoma desde un punto inicial, como un escritorio, hasta una estación de abastecimiento para recoger un snack (como una bolsa de papas) y llevarlo de regreso al punto de partida en este caso el escritorio.
+Chesster es un sistema mecatrónico autónomo diseñado como un brazo manipulador estacionario cuyo propósito es jugar ajedrez físicamente contra un oponente humano. El nombre es un juego de palabras con "Jester", el clásico bufón de la corte, actuando en este caso como un compañero robótico de entretenimiento personal.
 
-Para cumplir con este objetivo, la navegación del robot se realizará mediante un sistema de **seguidor de línea**, utilizando sensores infrarrojos que le permitirán guiarse con precisión por una ruta predefinida en el suelo. Como medida de seguridad adicional, el vehículo contará con un **sensor de proximidad** en su parte frontal, diseñado para detener el robot inmediatamente si detecta un obstáculo inesperado en su camino, evitando así cualquier colisión.
+Para cumplir con su objetivo, el sistema opera bajo una arquitectura *standalone* controlada por una Raspberry Pi Pico W. El sistema no requiere conexión a un PC durante la partida. La percepción del tablero se realiza mediante la cámara de un celular que transmite video vía WiFi a la placa. Utilizando un modelo de visión artificial YOLO (ajustado previamente mediante *Transfer Learning*), el microcontrolador mapea el tablero en una matriz de 8x8, donde las casillas y las piezas son identificadas con valores numéricos del 0 al 12. Esto le permite comparar el estado actual del tablero con el del turno anterior para validar que el movimiento del humano haya sido legal.
 
-Una vez que el robot llegue a la estación de abastecimiento, entrará en acción un **brazo robótico** de 3 grados de libertad, el cual se encargará de manipular y agarrar el snack. Para garantizar que la recolección fue exitosa, la canasta de carga del robot integrará un **sensor piezoeléctrico**. Este sensor actuará como una báscula o detector de impacto que "sentirá" la vibración o presión cuando la bolsa caiga dentro del recipiente, enviando una señal a la Raspberry Pi Pico para confirmar que la carga está asegurada antes de emprender el viaje de regreso.
+Una vez validada la jugada humana, el motor de ajedrez embebido decide el próximo movimiento. La ejecución física se realiza coordinando motores paso a paso para el posicionamiento preciso en los ejes X y Y, un servomotor para el descenso en el eje Z, y un electroimán capaz de sujetar, mover o capturar las piezas. El sistema interactúa constantemente con el usuario a través de una botonera HMI y una pantalla LCD, indicando tiempos, turnos y detectando errores físicos, como advertir al jugador si dejó una pieza en una "posición ambigua" entre dos casillas.
 
 ## 3. Motivación
-La motivación central para desarrollar **Alfrond** es la oportunidad de llevar la teoría de los circuitos y sistemas digitales a un escenario práctico, a una solucion para ciertas industrias, y salir un poco de lo comun en los proyectos que se realizan en la universidad. Este proyecto nos atrae porque sincronizar el desplazamiento de un vehículo con la manipulación física de un brazo robótico representa un desafío técnico altamente estimulante para nosotros, creemos que nos permitirá aplicar directamente nuestras habilidades de programación, manejo de registros, interrupciones y control de actuadores, entre otros que iremos aprendiendo a lo largo del curso, consolidando nuestra formación en ingeniería mediante la resolución de problemas reales de calibración e integración tecnológica.
+La motivación central para desarrollar **Chesster** surge de la evolución tecnológica de nuestro equipo. Decidimos descartar nuestra propuesta inicial enfocada en la navegación móvil para concentrar todos nuestros esfuerzos en un desafío mucho más profundo y riguroso: la cinemática, el control de precisión y la visión artificial integrada.
+
+Este proyecto nos apasiona porque llevar la teoría de los circuitos, el procesamiento de imágenes en hardware de recursos limitados (RAM limitada) y el control espacial en 3D a un escenario físico e interactivo es un reto técnico sumamente estimulante. Integrar un modelo de inteligencia artificial embebido para validar reglas y tomar decisiones autónomas nos permitirá aplicar directamente nuestras habilidades en programación de microcontroladores, manejo de periféricos (PWM, señales Step/Dir, I2C) y estructuración de datos, consolidando nuestra formación en ingeniería a través de un proyecto complejo y fuera de lo común.
